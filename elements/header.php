@@ -62,7 +62,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if($_SERVER["SCRIPT_NAME"] == '/login_or_sign-up/login.php'):{echo 'text-danger';}?> <?php endif?>" href="/login_or_sign-up/login.php">Login</a>
+          <a class="nav-link <?php if($_SERVER["SCRIPT_NAME"] == '/login_or_sign-up/login.php'):{echo 'text-danger';}?> <?php endif?>" href="/login_or_sign-up/login.php">Bonjour Login</a>
         </li>
       </ul>
     </div>
