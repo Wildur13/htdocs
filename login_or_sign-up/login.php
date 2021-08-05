@@ -1,19 +1,31 @@
 <?php
     $title = "Login";
+    $wrongEmail = null;
     require_once dirname(__DIR__) . DIRECTORY_SEPARATOR. 'elements/header.php';
+    if (sizeof($_POST)>0){
+        $database = new PDO('mysql: host=localhost; dbname=candidate','root','', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $email = $_POST['username'];
+        $pass = $_POST['pass'];
+        if (userExist($database, $email, $pass)){
+            redirect("/login_success/home_login.php");
+        }
+        else
+            $wrongEmail= "Please enter a registered E-mail and password";
+    }
 ?>
 
 <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 				<form class="login100-form validate-form flex-sb flex-w" method="POST">
+                    <?php if($wrongEmail) {echo "<div class='alert alert-danger text-center'> $wrongEmail </div>";}?>
 					<span class="login100-form-title p-b-32">
 						Account Login
 					</span>
 
-					<span class="txt1 p-b-11">Username or E-mail </span>
+					<span class="txt1 p-b-11">E-mail </span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" required placeholder="username or email">
+						<input class="input100" type="text" name="username" required placeholder="Email">
 						<span class="focus-input100"></span>
 					</div>
 					

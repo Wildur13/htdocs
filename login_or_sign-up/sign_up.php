@@ -1,14 +1,18 @@
 <?php
 
-	use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
+
+require_once dirname(__DIR__) . '/PHPmailer/Exception.php';
+require_once dirname(__DIR__) . '/PHPmailer/PHPMailer.php';
+require_once dirname(__DIR__) . '/PHPmailer/SMTP.php';
+
     $title = "Sign up";
 	$error= null;
 	$wrongEmail=null;
 	$wrongUsername=null;
     require_once dirname(__DIR__) . DIRECTORY_SEPARATOR. 'elements/header.php';
 
-    if(sizeof($_POST) === 0){
-    }
+    if(sizeof($_POST) === 0){}
     else if(correct_password()) {
 				$vorname = $_POST['vorname'];
 				$name = $_POST['name'];
@@ -24,15 +28,13 @@
 				$wrongUsername .= "Please change your username, because it already exists.";
 			}
 			else{
-				$token = 'qwertzuiopQWERTZUIOP1234567890asdfghjkyxcvbnm12345$*+';
+				$token = 'qwertzuiopQWERTZUIOP1234567890asdfghjkyxcvbn';
 				$token = substr(str_shuffle($token), 0, 10);
-				$database -> exec("INSERT INTO users1 SET isEmailVerified= '0', token='$token'");
-
 				include_once dirname(__DIR__).DIRECTORY_SEPARATOR. '/PHPmailer/PHPMailer.php';
-				$sendMail = new PHPMailer();
+				$sendMail = new PHPMailer(true);
 				$sendMail-> isMail();
 				if(sendEmail($sendMail,$vorname,$name,$email,$token)){
-                    insert_into_database($database);
+                    insert_into_database($database,$token);
 					header('Location: sign_up_complete.php');
 					exit();
 				}

@@ -1,27 +1,22 @@
 <?php declare(strict_types=1);
-final class Email
-{
+final class Email{
     private string $email;
 
-    private function __construct(string $email)
-    {
+    private function __construct(string $email){
         $this->ensureIsValidEmail($email);
 
         $this->email = $email;
     }
 
-    public static function fromString(string $email): self
-    {
+    public static function fromString(string $email): self{
         return new self($email);
     }
 
-    public function __toString(): string
-    {
+    public function __toString(): string{
         return $this->email;
     }
 
-    private function ensureIsValidEmail(string $email): void
-    {
+    private function ensureIsValidEmail(string $email): void{
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException(
                 sprintf(

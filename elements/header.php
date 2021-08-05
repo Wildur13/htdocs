@@ -30,6 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 <!--===============================================================================================-->
 
+
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/slide.css">
@@ -50,7 +51,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link <?php if($_SERVER["SCRIPT_NAME"] == '/index.php'):?> text-danger <?php endif?>" aria-current="page" href="/index.php">Home</a>
+          <a class="nav-link <?php if($_SERVER["SCRIPT_NAME"] == '/index.php' || $_SERVER["SCRIPT_NAME"] == '/login_success/home_login.php'):?> text-danger <?php endif?>" aria-current="page" href="/index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link 
@@ -58,13 +59,18 @@
                 elseif ($_SERVER["SCRIPT_NAME"] == '/login_or_sign-up/sign_up_complete.php'): {echo 'text-danger';} ?>
                 <?php endif?>" 
             aria-current="page" href="<?php echo address()?> "> 
-            <?php if(address() === '/login_or_sign-up/sign_up_complete.php'): {echo 'Sign up complete';} else: {echo 'Sign up';}?><?php endif?> 
+            <?php if(address() === '/login_or_sign-up/sign_up_complete.php'): {echo 'Sign up complete';} elseif ($_SERVER["SCRIPT_NAME"] == '/login_success/home_login.php'): {echo '';}
+            else:{echo "Sign up";}?><?php endif?>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if($_SERVER["SCRIPT_NAME"] == '/login_or_sign-up/login.php'):{echo 'text-danger';}?> <?php endif?>" href="/login_or_sign-up/login.php">Bonjour Login</a>
+          <a class="nav-link <?php if($_SERVER["SCRIPT_NAME"] == '/login_or_sign-up/login.php'):{echo 'text-danger';}?> <?php endif?>" href="/login_or_sign-up/login.php">
+              <?php if($_SERVER["SCRIPT_NAME"] == '/login_success/home_login.php') {echo '';} else {echo 'Login';}?></a>
         </li>
-      </ul>
     </div>
+      <div class="d-flex">
+                  <a class="nav-link <?php if($_SERVER["SCRIPT_NAME"] == '/login_or_sign-up/login.php'):{echo 'text-danger';}?> <?php endif?>" href="/login_or_sign-up/login.php">
+                      <?php if($_SERVER["SCRIPT_NAME"] == '/login_success/home_login.php') {echo '<i class="fa fa-sign-out" aria-hidden="true"></i>';} else {echo '';}?></a>
+      </div>
   </div>
 </nav>
