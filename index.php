@@ -16,7 +16,7 @@
 <div class="slideshow-container">
   <?php for($i=1; $i<=4; $i++):?>
   <div class="mySlides fade">
-    <a href="#" target="blank">
+    <a href="<?php if ($i === 1): {echo 'https://snake-game13.netlify.app';} else: {echo '#';}?> <?php endif?>" target="_blank">
     <img src="/images/img<?= $i?>.png" style="width: 100%" height="400">
     </a>
   </div>
@@ -26,20 +26,20 @@
 ?>
 </div>
 <br>
-<div style="text-align:center">
+<div class="m-b-20" style="text-align:center">
     <?php for ($i=1; $i<=4; $i++):?>
   <span class="dot"></span>
     <?php endfor?>
 </div>
 <div class="container">
-    <div class="row">
+    <div class="row m-b-20" style="justify-content: space-between;">
         <?php for($i=0; $i<=3; $i++): ?>
-        <div class="col-md-3 card" style="width: 19rem;">
+        <div class="col-md-3 card shadow" style="width: 19rem; cursor: pointer">
             <img src="./images/img<?=$i+1?>.png" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><?= $games[$i]?></h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="<?php if ($i === 1): {echo 'https://snake-game13.netlify.app';} else: {echo '#';}?> <?php endif?>" class="btn btn-primary">Go to the game</a>
+                <a href="<?php if ($i === 0): {echo 'https://snake-game13.netlify.app';} else: {echo '#';}?> <?php endif?>" target="_blank" class="btn btn-primary">Go to the game</a>
             </div>
         </div>
         <?php endfor ?>
