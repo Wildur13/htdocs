@@ -20,7 +20,7 @@
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link href="/dashboard" :active="route().current('dashboard')">
-                                    Dashboard
+                                    Create
                                 </jet-nav-link>
                                 <jet-nav-link href="/courses" :active="route().current('courses.index')">
                                     Formations

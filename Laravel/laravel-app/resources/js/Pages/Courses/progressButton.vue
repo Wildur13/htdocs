@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
+
 
 
 export default ({
@@ -29,7 +30,9 @@ export default ({
             axios.post('/toggleProgress', {videoId: this.videoId,
             })
             .then( response => {
-                if(response.status === 200) this.isWatched = !this.isWatched;
+                if(response.status === 200) {
+                    this.isWatched = !this.isWatched;
+                    }
             })
             .catch(error =>console.log(error));
         },
