@@ -3,7 +3,7 @@
         <template #header>
             List of Formation
         </template>
-        <div v-for="course in this.courseList" v-bind:key="course.id">
+        <div v-for="course in courses" v-bind:key="course.id">
            <div class="py-3">
                 <div class="mx-8 bg-white rounded shadow p-4">
                     <div class=" text-sm text-gray-600">Directed by {{ course.user.name}},  <span class="text-gray">posted on {{this.date(course.created_at)[0] }} at {{this.hour(course.created_at)[0]}},  
@@ -35,10 +35,9 @@
                             </svg>
                         </a>
                    </div>
-                </div>
-           </div>
 
-            
+                </div>
+           </div>   
         </div>
     </app-layout>
 </template>
@@ -46,10 +45,12 @@
 <script>
 
 import AppLayout from '../../Layouts/AppLayout.vue'
+import  Link  from '@inertiajs/inertia-vue3';
 
 export default{
     components : {
-        AppLayout
+        AppLayout,
+        Link
     },
 
     props : ['courses', 'authen'],
@@ -57,8 +58,6 @@ export default{
     data(){
         return {
             courseList: this.courses,
-            dates: this.date,
-            updates: this.update,
             auth: this.authen
                 
         }

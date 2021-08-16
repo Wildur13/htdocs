@@ -30,7 +30,6 @@ class CourseController extends Controller
                 WHERE videos.course_id = courses.id
         ) AS total_duration'))
         ->withCount('videos')->latest()->get();
-
         $user = auth()->user();
 
         return Inertia :: render('Courses/Index', [
